@@ -55,10 +55,17 @@ function App() {
   const [input, setInput] = useState('');
   const [markerPos, setMarkerPos] = useState(null);
   const [clickedCoords, setClickedCoords] = useState(null);
+  const [error, setError] = useState('')
 
   function handleSubmit(e) {
     if (e.key === 'Enter') {
-      setMarkerPos(parseGameCoords(input))
+      const pos = parseGameCoords(input)
+      if (isNaN(pos[0]) || isNaN(pos[1])) {
+        setError('Invalid coordinates. Paste them directly from the game.')
+        return
+      }
+      setError('')
+      setMarkerPos(pos)
     }
   }
 
@@ -93,6 +100,7 @@ function App() {
             onKeyDown={handleSubmit}
             onChange={e => setInput(e.target.value)}
             value={input}
+            error={!!error}
           />
           <Divider/>
 
