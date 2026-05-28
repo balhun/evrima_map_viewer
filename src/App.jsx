@@ -15,9 +15,12 @@ import playerMarkerImg from './assets/brachiosaurus.png'
 import './App.css'
 
 const GAME_BOUNDS = [
-  [-559425, -519600],
-  [662425, 699600]
+  [-549425, -507600],
+  [662425, 612000]
 ];
+
+
+
 
 const darkTheme = createTheme({ palette: { mode: 'dark', }, });
 
