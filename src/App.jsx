@@ -142,7 +142,7 @@ function App() {
         className='map'
       >
 
-        <MapClickHandler setClickedCoords={setClickedCoords} />
+        <MapClickHandler onMapClick={setClickedCoords} />
 
         <ImageOverlay
           url={selectedMap}
