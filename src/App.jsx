@@ -40,15 +40,22 @@ function parseGameCoords(input) {
 }
 
 function MapClickHandler({ onMapClick }) {
+  const [clickPosition, setClickPosition] = useState(null);
+
   useMapEvents({
     click(e) {
+      setClickPosition(e.latlng);
+
       onMapClick({
         x: -Math.round(e.latlng.lat),
         y: Math.round(e.latlng.lng)
-      })
+      });
     }
-  })
-  return null
+  });
+
+  return clickPosition === null ? null : (
+    <Marker position={clickPosition} />
+  );
 }
 
 function App() {
@@ -128,6 +135,7 @@ function App() {
         <div className='island' style={{position: "absolute", bottom: "10px"}}>
           <Alert severity="info">Map and overlays made by <a  href="https://discord.gg/NuqdEub" target='_blank'>Coco</a> (Vulnona). Thank you!</Alert>
           <Alert severity="info"><a  href="https://www.flaticon.com/free-icons/dinosaur" title="dinosaur icons" target='_blank'>Marker Icon</a></Alert>
+          <Alert severity="warning">This website is using high resolution images! Lag is expected.</Alert>
         </div>
       </div>
 
