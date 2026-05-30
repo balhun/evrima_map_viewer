@@ -118,7 +118,7 @@ function getComparator(order, orderBy) {
 
 export default function DinoMatchup() {
   const [order, setOrder] = useState('desc');
-  const [orderBy, setOrderBy] = useState('bfAdult');
+  const [orderBy, setOrderBy] = useState('bfPrime');
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -170,83 +170,80 @@ export default function DinoMatchup() {
   );
 
   return (
-    <div className='matchup-background'>
-        <div className='matchup-container'>
-            <div className='island-matchup'>
-                <Box>
-                  <Paper>
-                    
-                    <EnhancedTableToolbar
-                      numSelected={selected.length} 
-                      stage={stage} 
-                      handleStageChange={handleStageChange} 
-                    />
+    <div className='matchup-container'>
+      <Paper sx={{ minWidth: '1200px' }}>
+        
+        <EnhancedTableToolbar
+          numSelected={selected.length} 
+          stage={stage} 
+          handleStageChange={handleStageChange} 
+        />
 
-                    <Divider/>
-                    
-                    <TableContainer sx={{ maxHeight: 'calc(100vh - var(--menubar-total) - 170px)', overflow: 'auto' }}>
-                      <Table size="medium" stickyHeader>
-                        <EnhancedTableHead
-                          order={order}
-                          orderBy={orderBy}
-                          onRequestSort={handleRequestSort}
-                          stage={stage}
-                        />
-                        <TableBody>
-                          {visibleRows.map((row, index) => {
-                            const isItemSelected = selected.includes(row.id);
-                            const labelId = `enhanced-table-checkbox-${index}`;
+        <Divider/>
+        
+        <TableContainer sx={{ maxHeight: 'calc(100vh - var(--menubar-total) - 170px)', overflow: 'auto', width: '1200px' }}>
+          <Table size="medium" stickyHeader sx={{ tableLayout: 'fixed' }}>
+            <EnhancedTableHead
+              order={order}
+              orderBy={orderBy}
+              onRequestSort={handleRequestSort}
+              stage={stage}
+            />
+            <TableBody>
+              {visibleRows.map((row, index) => {
+                const isItemSelected = selected.includes(row.id);
+                const labelId = `enhanced-table-checkbox-${index}`;
 
-                            return (
-                              <TableRow
-                                hover
-                                onClick={(event) => handleClick(event, row.id)}
-                                tabIndex={-1}
-                                key={row.id}
-                                selected={isItemSelected}
-                                sx={{ 
-                                  cursor: 'pointer',
-                                  backgroundColor: index % 2 === 0 ? theme.palette.rowStripe : 'transparent',
-                                }}
-                              >
-                                <TableCell padding="checkbox">
-                                  <Checkbox checked={isItemSelected} />
-                                </TableCell>
-                                
-                                <TableCell padding="none" sx={{ minWidth: "150px" }}>
-                                  {row.name}
-                                </TableCell>
-                                <TableCell>{row.diet}</TableCell>
-                                
-                                <TableCell align="right">{row[`bf${stage}`] ?? 'N/A'}</TableCell>
-                                <TableCell align="right">
-                                  {row[`weight${stage}`] ? row[`weight${stage}`].toLocaleString() : 'N/A'}
-                                </TableCell>
-                                <TableCell align="right">{row[`speed${stage}`] ?? 'N/A'}</TableCell>
-                                
-                                <TableCell>{row.growthTime}</TableCell>
-                              </TableRow>
-                            );
-                          })}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                    <TablePagination
-                      rowsPerPageOptions={[5, 10, 25]}
-                      component="div"
-                      count={rows.length}
-                      rowsPerPage={rowsPerPage}
-                      page={page}
-                      onPageChange={(e, newPage) => setPage(newPage)}
-                      onRowsPerPageChange={(e) => {
-                        setRowsPerPage(parseInt(e.target.value, 10));
-                        setPage(0);
-                      }}
-                    />
-                  </Paper>
-                </Box>
-            </div>
-        </div>
+                return (
+                  <TableRow
+                    hover
+                    onClick={(event) => handleClick(event, row.id)}
+                    tabIndex={-1}
+                    key={row.id}
+                    selected={isItemSelected}
+                    sx={{ 
+                      cursor: 'pointer',
+                      backgroundColor: index % 2 === 0 ? theme.palette.rowStripe : 'transparent',
+                    }}
+                  >
+                    <TableCell padding="checkbox">
+                      <Checkbox checked={isItemSelected} />
+                    </TableCell>
+                    
+                    <TableCell padding="none" sx={{ minWidth: "150px" }}>
+                      {row.name}
+                    </TableCell>
+                    <TableCell>{row.diet}</TableCell>
+                    
+                    <TableCell align="right">{row[`bf${stage}`] ?? 'N/A'}</TableCell>
+                    <TableCell align="right">
+                      {row[`weight${stage}`] ? row[`weight${stage}`].toLocaleString() : 'N/A'}
+                    </TableCell>
+                    <TableCell align="right">{row[`speed${stage}`] ?? 'N/A'}</TableCell>
+                    
+                    <TableCell align='right' sx={{ width: '40px' }}>{row.growthTime}</TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={(e, newPage) => setPage(newPage)}
+          onRowsPerPageChange={(e) => {
+            setRowsPerPage(parseInt(e.target.value, 10));
+            setPage(0);
+          }}
+        />
+      </Paper>
+      {/*<Paper sx={{ minWidth: '1200px' }}>
+        test
+      </Paper>*/}
     </div>
   )
 }

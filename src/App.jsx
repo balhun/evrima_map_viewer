@@ -1,5 +1,5 @@
 import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router' // or 'react-router-dom' depending on your version
+import { createBrowserRouter, RouterProvider } from 'react-router'
 import MapViewer from './pages/MapViewer' 
 import Layout from './components/Layout'
 import DinoMatchup from './pages/DinoMatchup'

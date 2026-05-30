@@ -7,7 +7,7 @@ const getHeadCells = (stage) => [
   { id: `bf${stage}`, numeric: true, disablePadding: false, label: `${stage} Bite Force` },
   { id: `weight${stage}`, numeric: true, disablePadding: false, label: `${stage} Weight (kg)` },
   { id: `speed${stage}`, numeric: true, disablePadding: false, label: `${stage} Speed (km/h)` },
-  { id: 'growthTime', numeric: false, disablePadding: false, label: 'Growth Time' },
+  { id: 'growthTime', numeric: true, disablePadding: false, label: 'Growth Time' },
 ];
 
 export default function EnhancedTableHead({ order, orderBy, onRequestSort, stage }) {

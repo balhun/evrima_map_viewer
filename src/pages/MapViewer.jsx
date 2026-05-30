@@ -75,7 +75,6 @@ export default function MapViewer() {
     }
   }
 
-  // 2. We define the dynamic style for our floating panels here
   const islandSx = {
     display: 'flex',
     flexDirection: 'column',
@@ -87,21 +86,19 @@ export default function MapViewer() {
   return (
     <Box
       sx={{ 
-          position: 'absolute', // Breaks out of all parent containers
+          position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
           width: '100vw',
           height: '100vh',
-          backgroundColor: theme.palette.mapBackground, // 👈 Solid wall of Ocean Blue!
+          backgroundColor: theme.palette.mapBackground,
           overflow: 'hidden',
-          zIndex: 0 // Keeps it properly behind your Menubar
+          zIndex: 0 
         }}
     >
       <div className='islands-top' onKeyDown={(e) => e.stopPropagation()}>
-        
-        {/* 3. Replaced <div className="island"> with <Paper> */}
         <Paper sx={islandSx} elevation={4}>
           <FormControl fullWidth>
             <InputLabel>Map Size Selector</InputLabel>
@@ -169,7 +166,6 @@ export default function MapViewer() {
         minZoom={-11}
         maxBoundsViscosity={1}
         className='map'
-        /*style={{ backgroundColor: theme.palette.mapBackground }}*/
       >
         <MapClickHandler onMapClick={setClickedCoords} />
         <ImageOverlay url={selectedMap} bounds={GAME_BOUNDS} />

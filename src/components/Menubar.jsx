@@ -23,7 +23,6 @@ export default function Menubar({ currentMode, toggleTheme }) {
         gap: '15px',
       })}
     >
-      {/* 👈 Notice the logic is flipped! Active = contained, Inactive = outlined */}
       <Button
         variant={location.pathname === "/" ? 'outlined' : 'contained'}
         onClick={() => navigate('/')}
@@ -38,7 +37,15 @@ export default function Menubar({ currentMode, toggleTheme }) {
         Dinosaur Matchup
       </Button>
 
-      {/* 👈 Pushes the switch to the far right side */}
+      <Button
+        variant='contained'
+        href='https://balhun.github.io/isle_prime_checklist/'
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Prime Checklist (soon on this site)
+      </Button>
+
       <Box sx={{ flexGrow: 1 }} />
 
       <FormControlLabel
