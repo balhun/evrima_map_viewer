@@ -1,7 +1,13 @@
+:root {
+  --menubar-height: 60px;
+  --menubar-top: 10px;
+  --menubar-total: 80px;
+}
+
 .container {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 img {
@@ -12,14 +18,14 @@ img {
 .map {
   height: 100%;
   width: 100%;
-  background-color: #0b2651;
   z-index: 0;
+  background-color: transparent !important;
 }
 
 .islands-top {
   z-index: 1000;
   position: absolute;
-  top: 20px;
+  top: 90px;
   left: 10px;
   display: flex;
   flex-direction: column;
@@ -29,50 +35,23 @@ img {
 .islands-bottom {
   z-index: 1000;
   position: absolute;
-  bottom: 0px;
-  left: 10px;
-}
-
-.island {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 300px;
-  background-color: #051124;
-  border-radius: 10px;
-  padding: 10px;
-  color: white;
-}
-
-.button {
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid black;
-}
-
-.button:hover {
-  cursor: pointer;
-}
-
-.enabled {
-  background-color: rgb(39, 233, 39);
-}
-
-.disabled {
-  background-color: rgb(252, 71, 71);
-}
-
-a {
-  text-decoration: underline;
-  color: white;
-}
-
-.leaflet-top,
-.leaflet-bottom {
-  z-index: 500;
-}
-
-.leaflet-bottom.leaflet-right {
-  bottom: 10px;
+  bottom: 30px;
   right: 10px;
+}
+
+.matchup-container {
+  position: absolute;
+  top: 100px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Leaflet map layers */
+.leaflet-top, .leaflet-bottom { 
+  z-index: 500; 
+}
+
+body {
+  padding: 0px;
 }
