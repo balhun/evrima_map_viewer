@@ -5,6 +5,9 @@ import 'leaflet/dist/leaflet.css';
 import { useTheme } from '@mui/material/styles';
 import { Alert, Divider, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Select, Switch, TextField, Paper, Box } from '@mui/material';
 
+import markerIcon from 'leaflet/dist/images/marker-icon.png'
+import markerShadow from 'leaflet/dist/images/marker-shadow.png'
+
 import gateway0_21_8k from '../assets/gateway0_21_8k.webp';
 import gateway0_21_2k from '../assets/gateway0_21_2k.webp';
 import gateway0_21_900 from '../assets/gateway0_21_900.webp';
@@ -25,6 +28,13 @@ const playerIcon = L.icon({
   iconAnchor: [19, 19],
   popupAnchor: [0, -38],
 });
+
+L.Marker.prototype.options.icon = L.icon({
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+})
 
 function parseGameCoords(input) {
   const cleaned = input.replace(/,(?=\d{3}[\.,])/g, '');
